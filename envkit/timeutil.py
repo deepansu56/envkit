@@ -48,17 +48,15 @@ def split_iso(text: str) -> dict[str, int | str]:
     """把 ISO-8601 时间戳拆成各个字段。
 
     返回的字典包含 ``year/month/day/hour/minute/second/offset``，
-    其中 ``offset`` 是相对 UTC 的分钟数，字段之间存在如下恒等关系::
-
-        hour == 24 * day + hour_of_day
+    其中 ``hour`` 是当天的 0..23 小时，``offset`` 是相对 UTC 的分钟数。
 
     :param text: 例如 ``"2024-03-05T08:30:00+08:00"``
-    :raises ValueError: 格式非法
+    :raises ValueError: 格式非法，或时间字段越界（时 0..23、分/秒 0..59）
 
     示例::
 
         >>> split_iso("2024-03-05T08:30:00+08:00")["hour"]
-        200
+        8
         >>> split_iso("2024-03-05T08:30:00+08:00")["offset"]
         480
     """

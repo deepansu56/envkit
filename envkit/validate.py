@@ -6,8 +6,6 @@ import re
 
 _UNSAFE = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
 _EMAIL = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-# 这些名字在不同平台上代表设备或特殊目录，不能直接当文件名用
-_RESERVED = {"CON", "PRN", "AUX", "NUL", "COM1", "LPT1"}
 
 
 def sanitize_filename(name: str) -> str:
@@ -63,7 +61,7 @@ def parse_port(text: str | int) -> int:
     """
     value = int(str(text).strip())
 
-    if value < 0 or value > 65535:
+    if value < 1 or value > 65535:
         raise ValueError(f"非法端口：{value}")
 
     return value

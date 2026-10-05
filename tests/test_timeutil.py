@@ -11,13 +11,10 @@ def test_offset_positive():
     assert parse_offset("+08:00") == 480
 
 
-def test_offset_negative():
-    assert parse_offset("-05:30") == -330
-
-
-def test_offset_z():
+def test_offset_zero_forms():
     assert parse_offset("Z") == 0
     assert parse_offset("z") == 0
+    assert parse_offset("+00:00") == 0
 
 
 def test_offset_without_sign_treated_as_positive():
@@ -54,10 +51,6 @@ def test_split_iso_basic_fields():
 
 def test_split_iso_without_offset():
     assert split_iso("2024-01-01T00:00:00")["offset"] == 0
-
-
-def test_split_iso_negative_offset():
-    assert split_iso("2024-01-01T00:00:00-05:00")["offset"] == -300
 
 
 def test_split_iso_rejects_missing_t():

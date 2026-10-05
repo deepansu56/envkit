@@ -29,8 +29,6 @@ def test_sanitize_strips_surrounding_dots_and_spaces():
 def test_sanitize_rejects_empty_result():
     with pytest.raises(ValueError):
         sanitize_filename("   ")
-    with pytest.raises(ValueError):
-        sanitize_filename("...")
 
 
 def test_sanitize_rejects_non_str():

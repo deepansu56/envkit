@@ -54,6 +54,8 @@ def get_bool(
 ) -> bool:
     """从环境变量读取布尔值。
 
+    取值大小写不敏感（``TRUE`` / ``True`` / ``true`` 等价）。
+
     :param name: 环境变量名
     :param default: 变量不存在或无法识别时返回的值
     :returns: 布尔值

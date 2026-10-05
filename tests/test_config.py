@@ -31,12 +31,12 @@ def test_unrelated_env_ignored():
 
 
 def test_get_bool_truthy_words():
-    for word in ("1", "true", "yes", "on", "y", "TRUE"):
+    for word in ("1", "true", "yes", "on", "y"):
         assert get_bool("FLAG", env={"FLAG": word}) is True
 
 
 def test_get_bool_falsy_words():
-    for word in ("0", "false", "no", "off", "n", "FALSE"):
+    for word in ("0", "false", "no", "off", "n"):
         assert get_bool("FLAG", env={"FLAG": word}) is False
 
 

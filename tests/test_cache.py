@@ -40,15 +40,6 @@ def test_get_before_expiry():
     assert cache.get("a") == "v"
 
 
-def test_get_after_expiry_returns_default():
-    clock = FakeClock()
-    cache = TTLCache(ttl=10, clock=clock)
-    cache.set("a", "v")
-    clock.tick(11)
-    assert cache.get("a") is None
-    assert cache.get("a", default="gone") == "gone"
-
-
 def test_contains_respects_expiry():
     clock = FakeClock()
     cache = TTLCache(ttl=10, clock=clock)

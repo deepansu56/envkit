@@ -39,7 +39,7 @@ class TTLCache:
         self._store[key] = (value, expires_at)
 
     def get(self, key: str, default: Any = None) -> Any:
-        """读取 ``key``；不存在时返回 ``default``。"""
+        """读取 ``key``；不存在或**已过期**时返回 ``default``。"""
         entry = self._store.get(key)
         if entry is None:
             self._misses += 1
