@@ -17,6 +17,12 @@ def test_parse_kb():
     assert parse_size("1 KB") == 1000
 
 
+def test_parse_without_space():
+    assert parse_size("512KB") == 512_000
+    assert parse_size("1.5GB") == 1_500_000_000
+    assert parse_size("2TB") == 2_000_000_000_000
+
+
 def test_parse_mb_with_decimal():
     assert parse_size("1.5 MB") == 1_500_000
     assert parse_size("0.5 MB") == 500_000
