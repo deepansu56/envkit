@@ -43,8 +43,12 @@ def parse_size(text: str) -> int:
     if not raw:
         raise ValueError("容量字符串不能为空")
 
-    number, _, unit = raw.partition(" ")
-    unit = unit.strip() or "B"
+    split_at = len(raw)
+    while split_at > 0 and raw[split_at - 1].isalpha():
+        split_at -= 1
+
+    number = raw[:split_at].strip()
+    unit = raw[split_at:].strip() or "B"
     unit = _UNIT_ALIASES.get(unit, unit)
     if unit not in _UNIT_FACTORS:
         raise ValueError(f"未知容量单位：{unit!r}")
