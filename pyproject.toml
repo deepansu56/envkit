@@ -1,0 +1,29 @@
+[project]
+name = "envkit"
+version = "0.6.0"
+description = "用于演示 Fissue 的小型配置/缓存/校验工具库"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "envkit maintainers" }]
+keywords = ["config", "cache", "registry", "validation", "demo"]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/"
+Issues = "https://github.com/"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["envkit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
